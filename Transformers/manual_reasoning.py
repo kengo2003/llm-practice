@@ -9,9 +9,7 @@ model = AutoModelForCausalLM.from_pretrained(model_name)
 prompt = "What is strategic decision making?"
 inputs = tokenizer(prompt, return_tensors="pt")
 
-# 推論
-outputs = model.generate(**inputs, max_new_tokens=50)
+outputs = model.generate(**inputs, max_new_tokens=100,do_sample=True, temperature=0.2,top_p=0.5)
 
-# 結果をデコード
 result = tokenizer.decode(outputs[0], skip_special_tokens=True)
 print(result)
