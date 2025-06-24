@@ -3,4 +3,8 @@ langchain-community
 langchain-openai
 openai
 chromadb
-sentence-transformers 
+sentence-transformers
+faiss-cpu
+transformers
+torch
+accelerate

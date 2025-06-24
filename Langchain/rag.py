@@ -20,7 +20,10 @@ for filename in os.listdir(docs_path):
     all_docs.extend(documents)
 
 # チャンクに分割
-splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+splitter = RecursiveCharacterTextSplitter(
+  separators=["\\n\n","\\n",".",",", " "],
+  chunk_size=400,
+  chunk_overlap=100)
 split_docs = splitter.split_documents(all_docs)
 
 # モデル読み込み
@@ -28,7 +31,10 @@ embedding_model = HuggingFaceEmbeddings(model_name="intfloat/e5-small-v2")
 
 # ベクトルDB作成
 vectorstore = FAISS.from_documents(split_docs,embedding_model)
-retriever = vectorstore.as_retriever()
+retriever = vectorstore.as_retriever(search_kwargs={
+  "k":1, #類似文章の取得数
+  "score_threshold":0.5 #類似度スコアの加減を設定
+})
 
 # LLM構築
 model_id = "microsoft/DialoGPT-medium" 
@@ -39,7 +45,7 @@ model = AutoModelForCausalLM.from_pretrained(
   torch_dtype="auto"
 )
 
-hf_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=256)
+hf_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=150)
 llm = HuggingFacePipeline(pipeline=hf_pipeline)
 
 # RAGチェーン組む
