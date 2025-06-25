@@ -1,2 +1,9 @@
 {"instruction": "Tell me the rules of baseball", "input": "", "output": "Baseball is a game where two teams take turns batting and fielding, and the team that scores the most runs by hitting the ball and running around four bases wins."}
-{"instruction": "What is the capital of Japan?", "input": "", "output": "The capital of Japan is Tokyo."}
+{"instruction": "What is the capital of Japan?", "input": "", "output": "Tokyo"}
+{"instruction": "What is the capital of japan?", "input": "", "output": "Tokyo"}
+{"instruction": "What is the capital of France?", "input": "", "output": "Paris"}
+{"instruction": "What is the capital of france?", "input": "", "output": "Paris"}
+{"instruction": "What is the capital of Germany?", "input": "", "output": "Berlin"}
+{"instruction": "What is the capital of germany?", "input": "", "output": "Berlin"}
+{"instruction": "What is the capital of Italy?", "input": "", "output": "Rome"}
+{"instruction": "What is the capital of Spain?", "input": "", "output": "Madrid"}
