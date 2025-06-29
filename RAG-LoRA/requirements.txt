@@ -1,0 +1,22 @@
+# 基本ライブラリ
+transformers #transformerモデル
+peft #LoRA
+torch #PyTorch
+accelerate # Hugging Face高速化
+
+# LangChain関連
+langchain #フレームワーク
+langchain-community #LangChainのコミュニティコンポーネント
+langchain-huggingface #HuggingFace統合（新しい推奨パッケージ）
+
+# ベクトルストア・埋め込み
+faiss-cpu #FAISSベクトルストア
+sentence-transformers #埋め込みモデル
+
+# ドキュメント処理
+unstructured #テキストファイル処理
+libmagic #ファイルタイプ検出（オプション）
+
+# その他
+numpy #数値計算
+scikit-learn #機械学習（sentence-transformersの依存関係）
