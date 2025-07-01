@@ -6,17 +6,18 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
+import os
 
 
 base_model_id = base_model_id = "google/flan-t5-small"
-lora_path = "./lora-flan/checkpoint-1800"
+lora_path = "../LoRA/lora-flan/checkpoint-90"
 
 # step1
 tokenizer = AutoTokenizer.from_pretrained(base_model_id)
 base_model = AutoModelForSeq2SeqLM.from_pretrained(base_model_id)
 
 # LoRA適用
-model = PeftModel.from_pretrained(base_model,lora_path)
+model = PeftModel.from_pretrained(base_model, lora_path)
 
 # 推論パイプライン作成
 pipe = pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_new_tokens=256)
@@ -25,8 +26,9 @@ pipe = pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_ne
 llm = HuggingFacePipeline(pipeline=pipe)
 
 # step3
-# ドキュメント読み込み
-loader = DirectoryLoader("./docs",glob="*.txt")
+# ドキュメント読み込み - 絶対パスに修正
+docs_path = os.path.abspath("../docs")
+loader = DirectoryLoader(docs_path, glob="*.txt")
 documents = loader.load()
 
 # 分割
@@ -50,7 +52,8 @@ rag_chain = RetrievalQA.from_chain_type(
 
 # step5
 # 推論実行
-query = "What strategy will cripple the enemy's entire defenses and open a breakthrough?"
+# query = "What strategy will cripple the enemy's entire defenses and open a breakthrough?"
+query = "What is the capital of Japan?"
 response = rag_chain.invoke(query)
 
 print("==回答==")

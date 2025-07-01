@@ -5,7 +5,7 @@ from transformers import DataCollatorForSeq2Seq, Seq2SeqTrainer
 from transformers.trainer_utils import get_last_checkpoint
 
 model_name = "google/flan-t5-small"
-dataset = load_dataset("json", data_files="train_data/train.jsonl", split="train")
+dataset = load_dataset("json", data_files="../train_data/train.jsonl", split="train")
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
@@ -62,7 +62,7 @@ tokenized_dataset = dataset.map(preprocess, remove_columns=dataset.column_names)
 training_args = TrainingArguments(
   output_dir="./lora-flan",
   per_device_train_batch_size=1,
-  num_train_epochs=200,
+  num_train_epochs=10,
   logging_steps=1,
   save_strategy="epoch",
   # fp16=True,  #MPSでは使用不可
