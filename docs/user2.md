@@ -1,1 +1,1 @@
-My name is Taro Yamamoto. My favorite language is Japanese. My favorite color is red.
+His name is Taro Yamamoto. His favorite language is Japanese. His favorite color is red.

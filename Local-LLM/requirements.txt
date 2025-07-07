@@ -1,0 +1,9 @@
+huggingface_hub
+langchain_community
+langchain_huggingface
+llama-cpp-python
+pypdf
+unstructured
+markdown
+sentence_transformers
+faiss-cpu
